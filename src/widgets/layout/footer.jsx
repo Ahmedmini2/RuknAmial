@@ -1,21 +1,61 @@
 import PropTypes from "prop-types";
 import { Typography, IconButton } from "@material-tailwind/react";
+import i18next from "../../services/i18next";
+import { useTranslation } from "react-i18next";
 
 const year = new Date().getFullYear();
 
 export function Footer({ title, description, socials, menus, copyright }) {
+  const [t] = useTranslation()
+  const ChangeLang = () => {
+    if (i18next.language == "en") {
+    i18next.changeLanguage("ar")
+    } else {
+      i18next.changeLanguage("en")
+    }
+  }
+
   return (
     <footer className="relative px-4 pt-8 pb-6">
       <div className="container mx-auto">
-        <div className="flex flex-wrap pt-6 text-center lg:text-left">
-          <div className="w-full px-4 lg:w-6/12">
-            <Typography variant="h4" className="mb-4" color="blue-gray">
-              {title}
+        <div className="flex flex-wrap pt-6 text-center lg:text-right items-center">
+          
+          <div className="mx-auto mt-12 grid w-max grid-cols-2 gap-24 lg:mt-0">
+            {menus.map(({ name, items }) => (
+              <div key={name}>
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="mb-2 block font-medium uppercase"
+                >
+                  {t(name)}
+                </Typography>
+                <ul className="mt-3">
+                  {items.map((item) => (
+                    <li key={item.name}>
+                      <Typography
+                        as="a"
+                        href={item.path}
+                        rel="noreferrer"
+                        variant="small"
+                        className="mb-2 block font-normal text-blue-gray-500 hover:text-blue-gray-700"
+                      >
+                        {t(item.name)}
+                      </Typography>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className=" px-4 lg:w-6/12 justify-end text-right">
+            <Typography variant="h4" className="" color="blue-gray">
+              <img src="/dist/img/logo-gold.png" alt="Rukn Amial" className=" w-44 inline-flex" />
             </Typography>
-            <Typography className="font-normal text-blue-gray-500">
+            <Typography className="font-normal text-blue-gray-500 justify-end">
               {description}
             </Typography>
-            <div className="mx-auto mt-6 mb-8 flex justify-center gap-2 md:mb-0 lg:justify-start">
+            <div className="mx-auto mt-6 mb-8 flex justify-center  gap-2 md:mb-0 lg:justify-end">
               {socials.map(({ color, name, path }) => (
                 <a
                   key={name}
@@ -31,35 +71,6 @@ export function Footer({ title, description, socials, menus, copyright }) {
                 </a>
               ))}
             </div>
-          </div>
-          <div className="mx-auto mt-12 grid w-max grid-cols-2 gap-24 lg:mt-0">
-            {menus.map(({ name, items }) => (
-              <div key={name}>
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="mb-2 block font-medium uppercase"
-                >
-                  {name}
-                </Typography>
-                <ul className="mt-3">
-                  {items.map((item) => (
-                    <li key={item.name}>
-                      <Typography
-                        as="a"
-                        href={item.path}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="small"
-                        className="mb-2 block font-normal text-blue-gray-500 hover:text-blue-gray-700"
-                      >
-                        {item.name}
-                      </Typography>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
         </div>
         <hr className="my-6 border-gray-300" />
@@ -79,9 +90,9 @@ export function Footer({ title, description, socials, menus, copyright }) {
 }
 
 Footer.defaultProps = {
-  title: "Material Tailwind",
+  title: "ركن أميال",
   description:
-    "Easy to use React components for Tailwind CSS and Material Design.",
+    " شركة ركن أميال للمقاولات من الشركات الوطنية المميزة في المملكة العربية السعودية التي اتبعت سياسات مدروسة منذ انطلاقة الشركة وارتكزت تلك السياسات على أسس عملية وحلول واقعية مدروسة, وقد نهجت الشركة طموح يتنامى بشكل كبير لتحقيق الإنجازات الكبرى. ومن ثم المضي في إستراتيجية عمل مرنة تسعى لتحقيق الزيادة الشاملة في قطاع المقاولات العامة وهو ما يقود لضرورة الحفاظ على البصمة المميزة في إدارة وتنفيذ المشاريع العامة والكبرى",
   socials: [
     {
       color: "blue",
@@ -118,15 +129,15 @@ Footer.defaultProps = {
     {
       name: "useful links",
       items: [
-        { name: "About Us", path: "https://www.creative-tim.com/presentation" },
-        { name: "Blog", path: "https://www.creative-tim.com/blog" },
+        { name: "About", path: "/about-us" },
+        { name: "Home", path: "/" },
         {
-          name: "Github",
-          path: "https://www.github.com/creativetimofficial/material-tailwind?ref=mtk",
+          name: "Contact",
+          path: "/contact-us",
         },
         {
-          name: "Free Products",
-          path: "https://www.creative-tim.com/templates/free?ref=mtk",
+          name: "Services",
+          path: "/services",
         },
       ],
     },
@@ -134,35 +145,28 @@ Footer.defaultProps = {
       name: "other resources",
       items: [
         {
-          name: "MIT License",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/LICENSE.md?ref=mtk",
+          name: "Privacy Policy",
+          path: "/privacy-policy",
         },
         {
-          name: "Contribute",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/CONTRIBUTING.md?ref=mtk",
+          name: "Terms and Conditions",
+          path: "/terms-and-conditions",
         },
         {
-          name: "Change Log",
-          path: "https://github.com/creativetimofficial/material-tailwind/blob/main/CHANGELOG.md?ref=mtk",
+          name: "Blogs",
+          path: "/blogs",
         },
         {
-          name: "Contact Us",
-          path: "https://creative-tim.com/contact-us?ref=mtk",
+          name: "Projects",
+          path: "/projects",
         },
       ],
     },
   ],
   copyright: (
     <>
-      Copyright © {year} Material Tailwind by{" "}
-      <a
-        href="https://www.creative-tim.com?ref=mtk"
-        target="_blank"
-        className="text-blue-gray-500 transition-colors hover:text-blue-500"
-      >
-        Creative Tim
-      </a>
-      .
+      حقوق النشر © {year} جميع الحقوق محفوظة لدى شركة ركن أميال للمقاولات
+
     </>
   ),
 };

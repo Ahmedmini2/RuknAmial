@@ -1,44 +1,40 @@
-import { Home, Profile, SignIn, SignUp } from "@/pages";
-import {
-  HomeIcon,
-  UserCircleIcon,
-  ArrowRightOnRectangleIcon,
-  UserPlusIcon,
-  DocumentTextIcon,
-} from "@heroicons/react/24/solid";
+import { Home, AboutUs, OurServices, ContactUs, OurProjects } from "@/pages";
+
+
 
 export const routes = [
   {
-    icon: HomeIcon,
-    name: "home",
-    path: "/home",
+    
+    name: "Home",
+    path: "/",
     element: <Home />,
   },
   {
-    icon: UserCircleIcon,
-    name: "profile",
-    path: "/profile",
-    element: <Profile />,
+    
+    name: "About",
+    path: "/about-us",
+    element: <AboutUs />,
   },
   {
-    icon: ArrowRightOnRectangleIcon,
-    name: "Sign In",
-    path: "/sign-in",
-    element: <SignIn />,
+    
+    name: "Contact",
+    path: "/contact-us",
+    element: <ContactUs />,
   },
   {
-    icon: UserPlusIcon,
-    name: "Sign Up",
-    path: "/sign-up",
-    element: <SignUp />,
+    
+    name: "Services",
+    path: "/services",
+    element: <OurServices />,
   },
   {
-    icon: DocumentTextIcon,
-    name: "Docs",
-    href: "https://www.material-tailwind.com/docs/react/installation",
-    target: "_blank",
-    element: "",
+    
+    name: "Projects",
+    path: "/projects",
+    element: <OurProjects />,
+    
   },
+  
 ];
 
 export default routes;
