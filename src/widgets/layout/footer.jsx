@@ -6,20 +6,19 @@ import { useTranslation } from "react-i18next";
 const year = new Date().getFullYear();
 
 export function Footer({ title, description, socials, menus, copyright }) {
-  const [t] = useTranslation()
+  const [t] = useTranslation();
   const ChangeLang = () => {
     if (i18next.language == "en") {
-    i18next.changeLanguage("ar")
+      i18next.changeLanguage("ar");
     } else {
-      i18next.changeLanguage("en")
+      i18next.changeLanguage("en");
     }
-  }
+  };
 
   return (
-    <footer className="relative px-4 pt-8 pb-6">
+    <footer className="relative px-4 pb-6 pt-8">
       <div className="container mx-auto">
-        <div className="flex flex-wrap pt-6 text-center lg:text-right items-center">
-          
+        <div className="flex flex-wrap items-center pt-6 text-center lg:text-right">
           <div className="mx-auto mt-12 grid w-max grid-cols-2 gap-24 lg:mt-0">
             {menus.map(({ name, items }) => (
               <div key={name}>
@@ -48,14 +47,18 @@ export function Footer({ title, description, socials, menus, copyright }) {
               </div>
             ))}
           </div>
-          <div className=" px-4 lg:w-6/12 justify-end text-right">
+          <div className=" justify-end px-4 text-right lg:w-6/12">
             <Typography variant="h4" className="" color="blue-gray">
-              <img src="/dist/img/logo-gold.png" alt="Rukn Amial" className=" w-44 inline-flex" />
+              <img
+                src="img/logo-gold.png"
+                alt="Rukn Amial"
+                className=" inline-flex w-44"
+              />
             </Typography>
-            <Typography className="font-normal text-blue-gray-500 justify-end">
+            <Typography className="justify-end font-normal text-blue-gray-500">
               {description}
             </Typography>
-            <div className="mx-auto mt-6 mb-8 flex justify-center  gap-2 md:mb-0 lg:justify-end">
+            <div className="mx-auto mb-8 mt-6 flex justify-center  gap-2 md:mb-0 lg:justify-end">
               {socials.map(({ color, name, path }) => (
                 <a
                   key={name}
@@ -164,10 +167,7 @@ Footer.defaultProps = {
     },
   ],
   copyright: (
-    <>
-      حقوق النشر © {year} جميع الحقوق محفوظة لدى شركة ركن أميال للمقاولات
-
-    </>
+    <>حقوق النشر © {year} جميع الحقوق محفوظة لدى شركة ركن أميال للمقاولات</>
   ),
 };
 
