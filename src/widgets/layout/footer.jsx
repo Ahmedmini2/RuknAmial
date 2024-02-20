@@ -50,7 +50,7 @@ export function Footer({ title, description, socials, menus, copyright }) {
           </div>
           <div className=" px-4 lg:w-6/12 justify-end text-right">
             <Typography variant="h4" className="" color="blue-gray">
-              <img src="/dist/img/logo-gold.png" alt="Rukn Amial" className=" w-44 inline-flex" />
+              <img src="img/logo-gold.png" alt="Rukn Amial" className=" w-44 inline-flex" />
             </Typography>
             <Typography className="font-normal text-blue-gray-500 justify-end">
               {description}
@@ -153,7 +153,7 @@ Footer.defaultProps = {
           path: "/terms-and-conditions",
         },
         {
-          name: "Blogs",
+          name: "blogs",
           path: "/blogs",
         },
         {

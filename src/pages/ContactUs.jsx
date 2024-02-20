@@ -1,7 +1,9 @@
 import { Footer } from "@/widgets/layout";
-import React,{ useState }from 'react';
+import React,{ useState , Fragment, useRef, }from 'react';
 import axios from 'axios';
 import { useTranslation } from "react-i18next";
+import { Dialog, Transition } from '@headlessui/react'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
 
 
 
@@ -20,15 +22,18 @@ export function ContactUs() {
       [e.target.name]: value
     });
   };
+  const [open, setOpen] = useState(false)
 
+  const cancelButtonRef = useRef(null)
   const handleSubmit = (e) => {
     e.preventDefault();
     var valuess = new FormData();
     valuess.append('name', data.name);
     valuess.append('email', data.email);
     valuess.append('message', data.message);
-    axios.post("http://localhost/RuknamailAPI/v1/contact/contact.php", valuess).then((response) => {
+    axios.post("https://app.ruknamial.com/RuknamailAPI/v1/contact/contact.php", valuess).then((response) => {
       console.log(response.status, response.data);
+      setOpen(true)
     });
   };
 
@@ -36,8 +41,69 @@ export function ContactUs() {
 
   return (
     <>
+    <Transition.Root show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                  <div className="sm:flex flex-col items-center">
+                    <div className="mx-auto flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-24 sm:w-24">
+                      <CheckCircleIcon className="h-16 w-16 text-green-600" aria-hidden="true" />
+                    </div>
+                    <div className="mt-4 text-center sm:ml-4 sm:mt-2 sm:text-center">
+                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                        {t('message_success_title')}
+                      </Dialog.Title>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                        {t('message_success_text')}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:flex items-center justify-center sm:px-6">
+                  
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                    onClick={() => setOpen(false)}
+                    ref={cancelButtonRef}
+                  >
+                    {t('message_button')}
+                  </button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
+
       <section className="relative block h-[50vh]">
-        <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('img/bg1.jpg')] bg-cover bg-center" />
+        <div className="bg-profile-background absolute top-0 h-full w-full bg-[url('/img/bg1.jpg')] bg-cover bg-center" />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
       </section>
       <section className="relative bg-blue-gray-50/50 py-16 px-4">
@@ -47,7 +113,7 @@ export function ContactUs() {
         
         {/* :MAP CONTAINER */}
         <div className="order-1 col-span-full">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1812.8433302864225!2d46.75184357525653!3d24.66891154478926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f07212704661b%3A0x38654a8dd398fa1c!2z2YXYrNmF2YjYudipINin2YXZitin2YQg2YTZhNiq2LTYutmK2YQg2YjYp9mE2LXZitin2YbYqSBBbXlhbCBHcm91cA!5e0!3m2!1sen!2sae!4v1692989726749!5m2!1sen!2sae" 
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1812.6414593882607!2d46.77909218992539!3d24.68279933640113!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f06e64a73b12b%3A0x7d65b7766f56f673!2zUlFXQTY0MTAsIDY0MTAgQWwgQmFycSwgMjQ4NNiMINit2Yog2KfZhNix2YjYp9io2YrYjCBSaXlhZGggMTQyMTUsIFNhdWRpIEFyYWJpYQ!5e0!3m2!1sen!2sae!4v1699437613932!5m2!1sen!2sae" 
             title="map" scrolling="no" frameborder="0"
             width="100%" height="300px"
             className="" 
@@ -98,7 +164,8 @@ export function ContactUs() {
             </div>
             {/* ::Submit Button */}
             <div>
-              <button type="submit" className="py-2 px-6 rounded bg-orange-300 text-base text-white font-semibold uppercase hover:bg-black">Send Email </button>
+              <button type="submit" data-collapse-toggle="toast-success" className="py-2 px-6 rounded bg-orange-300 text-base text-white font-semibold uppercase hover:bg-black">Send Email </button>
+                
             </div>
           </form>
         </div>
@@ -116,7 +183,7 @@ export function ContactUs() {
             {/* ::Email contact */}
             <a href="mailto:info@ruknamyal.com" className="items-center text-sm text-blue-400 font-semibold hover:text-blue-500">
              
-              info@ruknamyal.com
+              info@ruknamial.com
             </a>
             {/* ::Address */}
             <p className="text-sm text-gray-500 leading-6">{t('address1')}<br />{t('address2')}<br /> {t('address3')}</p>

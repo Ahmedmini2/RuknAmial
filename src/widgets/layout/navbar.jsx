@@ -135,7 +135,7 @@ export function Navbar({ brandName, routes, action }) {
           {React.cloneElement(action, {
             className: "w-full block",
           })}
-           <Button variant="text" size="lg" fullWidth>
+           <Button variant="text" size="lg" onClick={ChangeLang} fullWidth>
             {t('Lang')}
             </Button>
           

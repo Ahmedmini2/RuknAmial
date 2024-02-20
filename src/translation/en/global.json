@@ -23,7 +23,7 @@
         "Privacy Policy": "Privacy Policy",
         "Terms and Conditions": "Terms and Conditions",
 
-        "Blogs": "Blogs",
+        "blogs": "Blogs",
         "blogs_title": "Follow the Latest News",
 
         "contact_us": "Contact Us",
@@ -41,6 +41,10 @@
         "effective_time_management": "Effective Time Management",
         "effective_time_management_text": "At Amial's Corner, we provide you with services that combine efficiency and effectiveness in time management. Discover how to achieve your goals in a timely manner with a team committed to delivering the best.",
         
+        "image_title_main" : "Quality in dealing with us",
+        "image_title_text": "Quality in dealing with us is essential to us. We always strive to provide quality service and a positive experience to our customers. We care about meeting your needs with care and attention without compromising on high standards of professionalism and ethics in dealing. We strive to ensure your complete satisfaction and consider quality in our service to be extremely important.",
+        
+       
         "main_title": "Our Pride, Your Dependence",
         "main_text1": "We take pride in our dedicated and specialized team that combines experience and creativity. We are committed to providing the best solutions and products to our clients, always striving for excellence in every field we operate.",
         "main_text2": "If you're looking for a reliable and creative partner to meet your needs, Rukn Amial is the optimal choice. We look forward to the opportunity to work with you and achieve mutual success.",
@@ -75,8 +79,8 @@
 
         "contact_us_text": "We are here to listen to you and serve you. If you have any inquiries, comments, or suggestions, please don't hesitate to get in touch with us. We value your feedback and are happy to provide the support you need.",
         "contact_us_text2": "You can also use the form below to send a direct message to us. We would be delighted to respond to your inquiries and meet your needs.",
-        "address1": "Salah Al-Din Al-Ayyubi Street, Safa",
-        "address2": "Riyadh 12851",
+        "address1": "6317 Albarq Street, Alrwabi ",
+        "address2": "Riyadh 14215",
         "address3": "Kingdom of Saudi Arabia",
         "name": "Name",
         "your_name": "Your Full Name",
@@ -84,6 +88,10 @@
         "your_email": "Your Email Address",
         "message": "Message",
         "how_can_we_help": "How Can We Help You",
+
+        "message_success_title" : "Your Message have been sent",
+        "message_success_text" : "Thank you for your message our team will contact you in the next 48 Hours",
+        "message_button" : "Home Page",
 
         "our_experience": "Our Experience",
         "our_experience_title": "A Place of Creativity and Excellence in Various Fields. We pride ourselves on providing exceptional services in a range of specialties, including",
